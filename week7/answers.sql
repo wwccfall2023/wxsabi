@@ -144,9 +144,10 @@ INNER JOIN
 
 DELIMITER ;; -- I didn't know these delimeters could be set to be anything :-)
 CREATE FUNCTION armor_total(character_id INT) RETURNS INT
+DETERMINISTIC -- UPDATE - Github complained about this missing 
 BEGIN
     DECLARE total_armor INT; -- I still struggle with when is it that vars need an @ symbol 
-							               -- before the declaration... I think they dont when they're local
+			     -- before the declaration... I think they dont when they're local
 
     SELECT SUM(i.armor) INTO total_armor
     FROM equipped e
