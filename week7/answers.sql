@@ -103,7 +103,7 @@ FROM
 INNER JOIN 
     equipped AS e ON c.character_id = e.character_id
 INNER JOIN 
-    items AS i ON e.item_id = i.item_id; -- this is where it should allow the view
+    items AS i ON e.item_id = i.item_id -- this is where it should allow the view
 ORDER BY item_name;
 
 
