@@ -69,8 +69,8 @@ CREATE EVENT remove_old_sessions
 	ON SCHEDULE EVERY 10 SECOND
 	DO
 		DELETE FROM sessions s WHERE s.updated_on < DATE_SUB(NOW(), INTERVAL 2 HOUR); -- not sure about this one
-END ;;
-DELIMITER ;
+;;
+DELIMITER ; -- UPDATE: I made a mistake after all XD(END;;)
 
 -- add_post(user_id, content): Create a procedure that adds a post 
 -- and creates notifications for all of the user's friends.
