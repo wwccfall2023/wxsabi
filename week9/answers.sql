@@ -57,9 +57,9 @@ DELIMITER ;;
 CREATE PROCEDURE add_new_user(IN first_name VARCHAR(30), IN last_name VARCHAR(30), IN email VARCHAR(30))
 BEGIN
     INSERT INTO users(first_name, last_name, email) VALUES(first_name, last_name, email);
-    SET @new_user_id = LAST_INSERT_ID(); -- getting the last inserted record, I had to look this one up
-    INSERT INTO notifications(user_id, post_id)
-    SELECT u.user_id, NULL FROM users u WHERE u.user_id <> @new_user_id;
+    -- SET @new_user_id = LAST_INSERT_ID(); -- getting the last inserted record, I had to look this one up
+    -- INSERT INTO notifications(user_id, post_id)
+    -- SELECT u.user_id, NULL FROM users u WHERE u.user_id <> @new_user_id;
 END ;;
 DELIMITER ;
 
