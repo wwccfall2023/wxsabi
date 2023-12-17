@@ -77,9 +77,10 @@ DELIMITER ; -- UPDATE: I made a mistake after all XD(END;;)
 DELIMITER ;;
 CREATE PROCEDURE add_post(IN user_id INT UNSIGNED, IN content TEXT)
 BEGIN
-    INSERT INTO posts(user_id, content) VALUES(user_id, content);
-    SET @new_post_id = LAST_INSERT_ID(); -- getting the last inserted record, I had to look this one up
-    INSERT INTO notifications(user_id, post_id)
-    SELECT f.friend_id, @new_post_id FROM friends f WHERE f.user_id = user_id;
+  INSERT INTO posts(user_id, content) VALUES(user_id, content);
+
+  INSERT INTO notifications(user_id, post_id)
+  SELECT f.friend_id, (SELECT LAST_INSERT_ID()) FROM friends f WHERE f.user_id = user_id;
 END ;;
 DELIMITER ;
+
